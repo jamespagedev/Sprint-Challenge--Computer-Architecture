@@ -1,7 +1,7 @@
 #ifndef _CPU_HELPERS_H_
 #define _CPU_HELPERS_H_
 
-#define DEBUGGER 1 // 0 = off, 1 = on
+#define DEBUGGER 0 // 0 = off, 1 = on
 
 // Sprint
 #define CMP_L 0b00000100
@@ -34,5 +34,8 @@ extern void cmp(struct cpu *cpu, unsigned char IR, int num_operands, unsigned ch
 extern void jmp(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *operands);
 extern void jeq(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *operands);
 extern void jne(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *operands);
+
+// Sprint (Stretch)
+extern void alu_and(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *operands);
 
 #endif

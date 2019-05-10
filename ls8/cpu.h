@@ -32,7 +32,10 @@ enum alu_op
   // Sprint
   ALU_CMP_L,
   ALU_CMP_G,
-  ALU_CMP_E
+  ALU_CMP_E,
+
+  // Sprint (Stretch)
+  ALU_AND
 };
 
 // Instructions
@@ -55,6 +58,9 @@ enum alu_op
 #define JMP 0b01010100
 #define JEQ 0b01010101
 #define JNE 0b01010110
+
+// Sprint (Stretch)
+#define AND 0b10101000
 
 // TODO: more instructions here. These can be used in cpu_run().
 #define SP 7

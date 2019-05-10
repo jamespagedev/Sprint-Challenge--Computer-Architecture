@@ -172,6 +172,9 @@ void alu(struct cpu *cpu, enum alu_op op, unsigned char regA, unsigned char regB
   case ALU_CMP_E:
     cpu->FL = CMP_E;
     break;
+  case ALU_AND:
+    cpu->registers[regA] = (cpu->registers[regA] & cpu->registers[regB]);
+    break;
   default:
     printf("Error: alu op not recognized, exiting program...\n\n");
     exit(1);
@@ -460,6 +463,27 @@ void jne(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *ope
   {
     printf("FL = %d\n", cpu->FL);
     printf("PC = %d\n", cpu->PC);
+    printf("--------------------------------------------------------\n");
+  }
+}
+
+void alu_and(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *operands)
+{
+  if (DEBUGGER)
+  {
+    print_ir_bin_hex_dec(IR);
+    printf("\n");
+    printf("AND Operand(s):\n");
+    printf("Num of operands = %d\n", num_operands);
+    printf("Operand 1 = %d\n", operands[0]);
+    printf("Operand 2 = %d\n", operands[1]);
+  }
+
+  alu(cpu, ALU_AND, operands[0], operands[1]);
+  cpu->PC += (num_operands + 1);
+  if (DEBUGGER)
+  {
+    printf("Operand 1 = %d\n", operands[0]);
     printf("--------------------------------------------------------\n");
   }
 }
