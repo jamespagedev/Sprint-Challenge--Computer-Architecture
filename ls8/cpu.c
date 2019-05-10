@@ -82,6 +82,9 @@ void cpu_run(struct cpu *cpu)
     case JMP:
       jmp(cpu, IR, num_operands, operands);
       break;
+    case JEQ:
+      jeq(cpu, IR, num_operands, operands);
+      break;
     case HLT:
       // Finished Instructions
       printf("\nInstructions executed successfully, exiting program...\n\n");

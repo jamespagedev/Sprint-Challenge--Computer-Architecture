@@ -407,3 +407,31 @@ void jmp(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *ope
     printf("--------------------------------------------------------\n");
   }
 }
+
+void jeq(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *operands)
+{
+  if (DEBUGGER)
+  {
+    print_ir_bin_hex_dec(IR);
+    printf("\n");
+    printf("JEQ Operand(s):\n");
+    printf("Num of operands = %d\n", num_operands);
+    printf("Operand 1 = %d\n", operands[0]);
+  }
+
+  if ((cpu->FL & CMP_E) == 1) // FL flag IS set to equal
+  {
+    cpu->PC = operands[0];
+  }
+  else
+  {
+    cpu->PC += (num_operands + 1);
+  }
+
+  if (DEBUGGER)
+  {
+    printf("FL = %d\n", cpu->FL);
+    printf("PC = %d\n", cpu->PC);
+    printf("--------------------------------------------------------\n");
+  }
+}
