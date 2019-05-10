@@ -37,7 +37,14 @@ void cpu_run(struct cpu *cpu)
       It needs to read the memory address that's stored in register `PC`, and store
       that result in `IR`, the _Instruction Register_.
     */
-    IR = cpu_ram_read(cpu, cpu->PC);
+    if (cpu->BOOL_HLT == 1)
+    {
+      IR = HLT;
+    }
+    else
+    {
+      IR = cpu_ram_read(cpu, cpu->PC);
+    }
     // 2. Figure out how many operands this next instruction requires
     num_operands = ((IR >> 6) & 0b11);
     // 3. Get the appropriate value(s) of the operands following this instruction
@@ -106,6 +113,9 @@ void cpu_run(struct cpu *cpu)
     case SHR:
       alu_shr(cpu, IR, num_operands, operands);
       break;
+    case MOD:
+      alu_mod(cpu, IR, num_operands, operands);
+      break;
     case HLT:
       // Finished Instructions
       printf("\nInstructions executed successfully, exiting program...\n\n");
@@ -151,4 +161,7 @@ void cpu_init(struct cpu *cpu)
   // Sprint
   // FL set to binary of all 0's
   cpu->FL = 0b00000000;
+
+  // Sprint (Stretch)
+  cpu->BOOL_HLT = 0;
 }

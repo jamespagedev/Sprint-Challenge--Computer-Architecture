@@ -190,6 +190,9 @@ void alu(struct cpu *cpu, enum alu_op op, unsigned char regA, unsigned char regB
   case ALU_SHR:
     cpu->registers[regA] = (cpu->registers[regA] >> cpu->registers[regB]);
     break;
+  case ALU_MOD:
+    cpu->registers[regA] = (cpu->registers[regA] % cpu->registers[regB]);
+    break;
   default:
     printf("Error: alu op not recognized, exiting program...\n\n");
     exit(1);
@@ -610,4 +613,34 @@ void alu_shr(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char 
     printf("Operand 1 = %d\n", operands[0]);
     printf("--------------------------------------------------------\n");
   }
+}
+
+void alu_mod(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *operands)
+{
+  if (DEBUGGER)
+  {
+    print_ir_bin_hex_dec(IR);
+    printf("\n");
+    printf("MOD Operand(s):\n");
+    printf("Num of operands = %d\n", num_operands);
+    printf("Operand 1 = %d\n", operands[0]);
+    printf("Operand 2 = %d\n", operands[1]);
+  }
+
+  if (cpu->registers[operands[1]] == 0) // set cpu to hlt if second operand is 0
+  {
+    cpu->BOOL_HLT = 1;
+    printf("Error: second operand is %d", cpu->registers[operands[1]]);
+  }
+  else
+  {
+    alu(cpu, ALU_MOD, operands[0], operands[1]);
+  }
+
+  if (DEBUGGER)
+  {
+    printf("Operand 1 = %d\n", operands[0]);
+    printf("--------------------------------------------------------\n");
+  }
+  cpu->PC += (num_operands + 1);
 }
