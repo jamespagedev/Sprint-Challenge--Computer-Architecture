@@ -91,6 +91,9 @@ void cpu_run(struct cpu *cpu)
     case AND:
       alu_and(cpu, IR, num_operands, operands);
       break;
+    case OR:
+      alu_or(cpu, IR, num_operands, operands);
+      break;
     case HLT:
       // Finished Instructions
       printf("\nInstructions executed successfully, exiting program...\n\n");

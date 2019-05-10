@@ -35,7 +35,8 @@ enum alu_op
   ALU_CMP_E,
 
   // Sprint (Stretch)
-  ALU_AND
+  ALU_AND,
+  ALU_OR
 };
 
 // Instructions
@@ -61,6 +62,7 @@ enum alu_op
 
 // Sprint (Stretch)
 #define AND 0b10101000
+#define OR 0b10101010
 
 // TODO: more instructions here. These can be used in cpu_run().
 #define SP 7
