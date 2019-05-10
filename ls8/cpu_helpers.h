@@ -41,5 +41,6 @@ extern void alu_or(struct cpu *cpu, unsigned char IR, int num_operands, unsigned
 extern void alu_xor(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *operands);
 extern void alu_not(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *operands);
 extern void alu_shl(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *operands);
+extern void alu_shr(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *operands);
 
 #endif
