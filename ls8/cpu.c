@@ -97,6 +97,9 @@ void cpu_run(struct cpu *cpu)
     case XOR:
       alu_xor(cpu, IR, num_operands, operands);
       break;
+    case NOT:
+      alu_not(cpu, IR, num_operands, operands);
+      break;
     case HLT:
       // Finished Instructions
       printf("\nInstructions executed successfully, exiting program...\n\n");

@@ -39,5 +39,6 @@ extern void jne(struct cpu *cpu, unsigned char IR, int num_operands, unsigned ch
 extern void alu_and(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *operands);
 extern void alu_or(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *operands);
 extern void alu_xor(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *operands);
+extern void alu_not(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *operands);
 
 #endif

@@ -181,6 +181,9 @@ void alu(struct cpu *cpu, enum alu_op op, unsigned char regA, unsigned char regB
   case ALU_XOR:
     cpu->registers[regA] = (cpu->registers[regA] ^ cpu->registers[regB]);
     break;
+  case ALU_NOT:
+    cpu->registers[regA] = (~cpu->registers[regA]);
+    break;
   default:
     printf("Error: alu op not recognized, exiting program...\n\n");
     exit(1);
@@ -531,6 +534,27 @@ void alu_xor(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char 
 
   alu(cpu, ALU_XOR, operands[0], operands[1]);
   cpu->PC += (num_operands + 1);
+  if (DEBUGGER)
+  {
+    printf("Operand 1 = %d\n", operands[0]);
+    printf("--------------------------------------------------------\n");
+  }
+}
+
+void alu_not(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *operands)
+{
+  if (DEBUGGER)
+  {
+    print_ir_bin_hex_dec(IR);
+    printf("\n");
+    printf("NOT Operand(s):\n");
+    printf("Num of operands = %d\n", num_operands);
+    printf("Operand 1 = %d\n", operands[0]);
+  }
+
+  alu(cpu, ALU_NOT, operands[0], operands[0]);
+  cpu->PC += (num_operands + 1);
+
   if (DEBUGGER)
   {
     printf("Operand 1 = %d\n", operands[0]);
