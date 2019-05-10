@@ -38,7 +38,8 @@ enum alu_op
   ALU_AND,
   ALU_OR,
   ALU_XOR,
-  ALU_NOT
+  ALU_NOT,
+  ALU_SHL
 };
 
 // Instructions
@@ -67,6 +68,7 @@ enum alu_op
 #define OR 0b10101010
 #define XOR 0b10101011
 #define NOT 0b01101001
+#define SHL 0b10101100
 
 // TODO: more instructions here. These can be used in cpu_run().
 #define SP 7

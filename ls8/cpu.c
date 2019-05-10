@@ -100,6 +100,9 @@ void cpu_run(struct cpu *cpu)
     case NOT:
       alu_not(cpu, IR, num_operands, operands);
       break;
+    case SHL:
+      alu_shl(cpu, IR, num_operands, operands);
+      break;
     case HLT:
       // Finished Instructions
       printf("\nInstructions executed successfully, exiting program...\n\n");
