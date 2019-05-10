@@ -387,3 +387,23 @@ void cmp(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *ope
   }
   cpu->PC += (num_operands + 1);
 }
+
+void jmp(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *operands)
+{
+  if (DEBUGGER)
+  {
+    print_ir_bin_hex_dec(IR);
+    printf("\n");
+    printf("JMP Operand(s):\n");
+    printf("Num of operands = %d\n", num_operands);
+    printf("Operand 1 = %d\n", operands[0]);
+  }
+
+  cpu->PC = operands[0];
+
+  if (DEBUGGER)
+  {
+    printf("PC = %d\n", cpu->PC);
+    printf("--------------------------------------------------------\n");
+  }
+}

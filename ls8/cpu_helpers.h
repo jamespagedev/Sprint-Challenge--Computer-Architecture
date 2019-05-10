@@ -31,5 +31,6 @@ extern void ret(struct cpu *cpu);
 
 // Sprint
 extern void cmp(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *operands);
+extern void jmp(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *operands);
 
 #endif

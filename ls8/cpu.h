@@ -52,6 +52,7 @@ enum alu_op
 
 // Sprint IR's
 #define CMP 0b10100111
+#define JMP 0b01010100
 
 // TODO: more instructions here. These can be used in cpu_run().
 #define SP 7
