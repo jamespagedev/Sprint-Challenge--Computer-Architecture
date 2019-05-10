@@ -114,11 +114,14 @@ void cpu_init(struct cpu *cpu)
     - `PC` and `FL` registers are cleared to `0`.
     - RAM is cleared to `0`.
   */
-  cpu->registers[7] = 0xF4;
-  printf("Complete.\n\n");
-
   /*
     Later on, you might do further initialization here, e.g. setting the initial
     value of the stack pointer.
   */
+  cpu->registers[7] = 0xF4;
+  printf("Complete.\n\n");
+
+  // Sprint
+  // FL set to binary of all 0's
+  cpu->FL = 0b00000000;
 }

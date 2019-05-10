@@ -3,6 +3,11 @@
 
 #define DEBUGGER 0 // 0 = off, 1 = on
 
+// Sprint
+#define CMP_L 0b00000100
+#define CMP_G 0b00000010
+#define CMP_E 0b00000001
+
 // ********************************************* helper functions **********************************************
 extern unsigned char cpu_ram_read(struct cpu *cpu, unsigned char pc);
 extern void cpu_ram_write(struct cpu *cpu, int index, unsigned char binary);

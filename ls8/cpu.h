@@ -13,6 +13,13 @@ struct cpu
   // ram (array)
   // The LS-8 has 8-bit addressing, so can address 256 bytes of RAM total.
   unsigned char ram[256];
+
+  // Sprint
+  // flag mask used 00000LGE
+  // L = less-than
+  // G = greater-than
+  // E = equal
+  unsigned char FL;
 };
 
 // ALU operations
@@ -20,7 +27,12 @@ enum alu_op
 {
   ALU_MUL,
   // Add more here
-  ALU_ADD
+  ALU_ADD,
+
+  // Sprint
+  ALU_CMP_L,
+  ALU_CMP_G,
+  ALU_CMP_E
 };
 
 // Instructions

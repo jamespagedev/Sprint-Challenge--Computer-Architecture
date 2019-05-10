@@ -163,6 +163,15 @@ void alu(struct cpu *cpu, enum alu_op op, unsigned char regA, unsigned char regB
   case ALU_ADD:
     cpu->registers[regA] = (cpu->registers[regA] + cpu->registers[regB]);
     break;
+  case ALU_CMP_L:
+    cpu->FL = CMP_L;
+    break;
+  case ALU_CMP_G:
+    cpu->FL = CMP_G;
+    break;
+  case ALU_CMP_E:
+    cpu->FL = CMP_E;
+    break;
   default:
     printf("Error: alu op not recognized, exiting program...\n\n");
     exit(1);
@@ -338,6 +347,15 @@ void call(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *op
   }
 }
 
+void ret(struct cpu *cpu)
+{
+  // The address of the **_instruction_** _directly after_ `CALL` is pushed onto the stack.
+  pop_reg_value(cpu, 0, cpu->ram[cpu->registers[SP]]);
+
+  // The PC is set to the address stored in the given register.
+  cpu->PC = cpu->registers[0];
+}
+
 void cmp(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *operands)
 {
   if (DEBUGGER)
@@ -351,29 +369,21 @@ void cmp(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *ope
   }
   if (cpu->registers[operands[0]] < cpu->registers[operands[1]])
   {
-    // write alu L flag
+    alu(cpu, ALU_CMP_L, operands[0], operands[1]);
   }
   else if (cpu->registers[operands[0]] > cpu->registers[operands[1]])
   {
-    // write alu G flag
+    alu(cpu, ALU_CMP_G, operands[0], operands[1]);
   }
   else if (cpu->registers[operands[0]] == cpu->registers[operands[1]])
   {
-    // write alu E flag
+    alu(cpu, ALU_CMP_E, operands[0], operands[1]);
   }
 
   if (DEBUGGER)
   {
+    printf("FL = %d\n", cpu->FL);
     printf("--------------------------------------------------------\n");
   }
   cpu->PC += (num_operands + 1);
-}
-
-void ret(struct cpu *cpu)
-{
-  // The address of the **_instruction_** _directly after_ `CALL` is pushed onto the stack.
-  pop_reg_value(cpu, 0, cpu->ram[cpu->registers[SP]]);
-
-  // The PC is set to the address stored in the given register.
-  cpu->PC = cpu->registers[0];
 }
