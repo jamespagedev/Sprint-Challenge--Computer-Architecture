@@ -435,3 +435,31 @@ void jeq(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *ope
     printf("--------------------------------------------------------\n");
   }
 }
+
+void jne(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *operands)
+{
+  if (DEBUGGER)
+  {
+    print_ir_bin_hex_dec(IR);
+    printf("\n");
+    printf("JNE Operand(s):\n");
+    printf("Num of operands = %d\n", num_operands);
+    printf("Operand 1 = %d\n", operands[0]);
+  }
+
+  if ((cpu->FL & CMP_E) == 0) // FL flag NOT set to equal
+  {
+    cpu->PC = operands[0];
+  }
+  else
+  {
+    cpu->PC += (num_operands + 1);
+  }
+
+  if (DEBUGGER)
+  {
+    printf("FL = %d\n", cpu->FL);
+    printf("PC = %d\n", cpu->PC);
+    printf("--------------------------------------------------------\n");
+  }
+}
