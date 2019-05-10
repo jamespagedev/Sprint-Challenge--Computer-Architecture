@@ -338,6 +338,37 @@ void call(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *op
   }
 }
 
+void cmp(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *operands)
+{
+  if (DEBUGGER)
+  {
+    print_ir_bin_hex_dec(IR);
+    printf("\n");
+    printf("CMP Operand(s):\n");
+    printf("Num of operands = %d\n", num_operands);
+    printf("Operand 1 = %d\n", operands[0]);
+    printf("Operand 2 = %d\n", operands[1]);
+  }
+  if (cpu->registers[operands[0]] < cpu->registers[operands[1]])
+  {
+    // write alu L flag
+  }
+  else if (cpu->registers[operands[0]] > cpu->registers[operands[1]])
+  {
+    // write alu G flag
+  }
+  else if (cpu->registers[operands[0]] == cpu->registers[operands[1]])
+  {
+    // write alu E flag
+  }
+
+  if (DEBUGGER)
+  {
+    printf("--------------------------------------------------------\n");
+  }
+  cpu->PC += (num_operands + 1);
+}
+
 void ret(struct cpu *cpu)
 {
   // The address of the **_instruction_** _directly after_ `CALL` is pushed onto the stack.

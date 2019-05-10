@@ -38,6 +38,9 @@ enum alu_op
 #define CALL 0b01010000
 #define RET 0b00010001
 
+// Sprint IR's
+#define CMP 0b10100111
+
 // TODO: more instructions here. These can be used in cpu_run().
 #define SP 7
 

@@ -24,4 +24,7 @@ extern void push(struct cpu *cpu, unsigned char IR, int num_operands, unsigned c
 extern void call(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *operands);
 extern void ret(struct cpu *cpu);
 
+// Sprint
+extern void cmp(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *operands);
+
 #endif
