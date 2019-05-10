@@ -399,7 +399,7 @@ void jmp(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *ope
     printf("Operand 1 = %d\n", operands[0]);
   }
 
-  cpu->PC = operands[0];
+  cpu->PC = cpu->registers[operands[0]];
 
   if (DEBUGGER)
   {
@@ -421,7 +421,7 @@ void jeq(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *ope
 
   if ((cpu->FL & CMP_E) == 1) // FL flag IS set to equal
   {
-    cpu->PC = operands[0];
+    cpu->PC = cpu->registers[operands[0]];
   }
   else
   {
@@ -449,7 +449,7 @@ void jne(struct cpu *cpu, unsigned char IR, int num_operands, unsigned char *ope
 
   if ((cpu->FL & CMP_E) == 0) // FL flag NOT set to equal
   {
-    cpu->PC = operands[0];
+    cpu->PC = cpu->registers[operands[0]];
   }
   else
   {

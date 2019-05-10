@@ -1,7 +1,7 @@
 #ifndef _CPU_HELPERS_H_
 #define _CPU_HELPERS_H_
 
-#define DEBUGGER 0 // 0 = off, 1 = on
+#define DEBUGGER 1 // 0 = off, 1 = on
 
 // Sprint
 #define CMP_L 0b00000100
